@@ -1,0 +1,63 @@
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Autofocus input Field</title>
+		<link rel="stylesheet" type="text/css" href="theme.css" />
+	</head>
+	<body>
+		<div class="otp-wrapper">
+			<h1>ENTER OTP</h1>
+			<div class="otpInput">
+				<input
+					type="text"
+					id="ist"
+					maxlength="1"
+					onkeyup="clickEvent(this,'sec')"
+				/>
+				<input
+					type="text"
+					id="sec"
+					maxlength="1"
+					onkeydown="removeotp(event , 'ist')"
+					onkeyup="clickEvent(this,'third')"
+				/>
+				<input
+					type="text"
+					id="third"
+					maxlength="1"
+					onkeydown="removeotp(event , 'sec')"
+					onkeyup="clickEvent(this,'fourth')"
+				/>
+				<input
+					type="text"
+					id="fourth"
+					maxlength="1"
+					onkeydown="removeotp(event , 'third')"
+					onkeyup="clickEvent(this,'fifth')"
+				/>
+				<input
+					type="text"
+					id="fifth"
+					onkeydown="removeotp(event , 'fourth')"
+					maxlength="1"
+				/>
+			</div>
+			<button>CONFIRM</button>
+		</div>
+		<script>
+			function clickEvent(first, last) {
+				if (first.value.length) {
+					document.getElementById(last).focus();
+				}
+			}
+			function removeotp(e, first) {
+				document.getElementById("fifth").value = "";
+				if (e.code == "Backspace") {
+					console.log("hello");
+					document.getElementById(first).focus();
+				}
+			}
+		</script>
+	</body>
+</html>
